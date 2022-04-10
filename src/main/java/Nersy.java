@@ -9,7 +9,7 @@ import java.util.concurrent.Callable;
 import java.io.File;
 
 @Command(name = "Nersy")
-class Nersy implements Callable<Integer>{
+public class Nersy implements Callable<Integer>{
     @Option(names = "--rm", description = "Remove the output file if it exists")
     boolean remove;
     @Parameters(index="0", paramLabel = "SRC", description = "data source to process")
