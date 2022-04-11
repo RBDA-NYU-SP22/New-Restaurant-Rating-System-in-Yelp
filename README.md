@@ -23,7 +23,7 @@ tar xzvf apache-maven-3.8.5-bin.tar.gz
 ```
 Add mvn to path
 ``` bash
-export PATH=/opt/apache-maven-3.8.5/bin:$PATH
+echo 'export PATH=/home/xw2788/apache-maven-3.8.5/bin:$PATH' >> ~/.bashrc
 ```
 Verify the installation
 ``` bash
