@@ -3,6 +3,8 @@ package user;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 
 public class User {
     private String user_id;
@@ -216,5 +218,15 @@ public class User {
 
     public static Field[] getFields(){
         return User.class.getDeclaredFields();
+    }
+
+    public Map<String, Object> getUserMap() throws IllegalAccessException {
+        Map<String, Object> r = new HashMap<String, Object>();
+        Field[] fields = User.getFields();
+        for (int i = 0; i < fields.length; i++) {
+            Object v = fields[i].get(this);
+            r.put(fields[i].getName(), v);
+        }
+        return r;
     }
 }

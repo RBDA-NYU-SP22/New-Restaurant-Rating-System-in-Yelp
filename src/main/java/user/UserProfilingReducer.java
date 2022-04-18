@@ -1,40 +1,62 @@
 package user;
 
-import org.apache.hadoop.io.NullWritable;
+import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 
 public class UserProfilingReducer
-        extends Reducer<NullWritable, UserProfilingTuple, NullWritable, UserProfilingTuple> {
+        extends Reducer<Text, UserProfilingTuple, Text, UserProfilingTuple> {
     private UserProfilingTuple result = new UserProfilingTuple();
     @Override
-    public void reduce(NullWritable key, Iterable<UserProfilingTuple> values, Context context)
+    public void reduce(Text key, Iterable<UserProfilingTuple> values, Context context)
             throws IOException, InterruptedException {
         // Set initial value to null to avoid setting a MIN number or a MAX number
-        result.setMinTuple(null);
-        result.setMaxTuple(null);
+        result.setMin(Double.MAX_VALUE);
+        result.setMax(Double.MIN_VALUE);
         result.setCount(0);
         int sum = 0;
         try{
             for (UserProfilingTuple value : values) {
-                if (result.getMaxTuple() == null){
-                    result.setMaxTuple(value.getMaxTuple());
-                }else {
-                    // The first function accepts Integers, and the second one accepts Double
-                    // Maybe we can implement a third one to process String, but it is not necessary for now
-                    result.setMaxTuple(UserProfilingTuple.mapFunc(value.getMaxTuple(), result.getMaxTuple(), Math::max, Math::max));
-                }
-                if (result.getMinTuple() == null){
-                    result.setMinTuple(value.getMinTuple());
-                }else {
-                    result.setMinTuple(UserProfilingTuple.mapFunc(value.getMinTuple(), result.getMinTuple(), Math::min, Math::min));
+                // Divided by types
+                switch (key.toString()){
+                    // number cases
+                    case "review_count":
+                    case "useful":
+                    case "funny":
+                    case "cool":
+                    case "fans":
+                    case "compliment_hot":
+                    case "compliment_more":
+                    case "compliment_profile":
+                    case "compliment_cute":
+                    case "compliment_list":
+                    case "compliment_note":
+                    case "compliment_plain":
+                    case "compliment_cool":
+                    case "compliment_funny":
+                    case "compliment_writer":
+                    case "compliment_photos":
+                    case "average_stars":
+                        result.setMax(Math.max(result.getMax(), value.getMax()));
+                        result.setMin(Math.min(result.getMin(), value.getMin()));
+                        break;
+                    // String cases
+                    case "user_id":
+                    case "name":
+                    case "yelping_since":
+                    case "elite":
+                    case "friends":
+                    default:
+                        result.setMax(0);
+                        result.setMin(0);
+                        break;
+
                 }
                 sum += value.getCount();
             }
             result.setCount(sum);
-            context.write(NullWritable.get(), result);
+            context.write(key, result);
         } catch (Exception e){
             e.printStackTrace();
         }
