@@ -3,7 +3,7 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
-import user.UserDrive;
+import user.UserDriver;
 
 import java.util.concurrent.Callable;
 
@@ -29,7 +29,7 @@ public class Nersy implements Callable<Integer>{
         switch (src){
             // TODO: Add new data source to process from here
             case "user":{
-                UserDrive user = new UserDrive();
+                UserDriver user = new UserDriver();
                 user.run(new String[]{input, output});
                 break;
             }
