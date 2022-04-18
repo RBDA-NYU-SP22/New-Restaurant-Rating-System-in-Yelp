@@ -23,7 +23,7 @@ tar xzvf apache-maven-3.8.5-bin.tar.gz
 ```
 Add mvn to path
 ``` bash
-echo 'export PATH=/home/xw2788/apache-maven-3.8.5/bin:$PATH' >> ~/.bashrc
+echo 'export PATH=/home/<NET_ID>/apache-maven-3.8.5/bin:$PATH' >> ~/.bashrc
 ```
 Verify the installation
 ``` bash
@@ -31,27 +31,41 @@ mvn -v
 ```
 
 ## Build and Run on HPC
+Pull the source code from Github
+
+```bash
+git pull
+```
+
 build the jar file
+
 ```
 mvn clean package
 ```
 
 Prepare the input files
 ``` bash
-  hadoop fs -mkdir /user/xw2788/lab3
-  hadoop fs -mkdir /user/xw2788/lab3/input
-  hadoop fs -put <inputfile> /user/xw2788/lab3/input
+  hadoop fs -mkdir /user/<NET_ID>/project
+  hadoop fs -mkdir /user/<NET_ID>/project/input
+  hadoop fs -put <inputfile> /user/<NET_ID>/project/input
+```
+
+Remove the output directory in HDFS
+
+```bash
+hadoop fs -rm -r /user/<NET_ID>/project/output
 ```
 
 Run with Hadoop
+
 ```
 hadoop jar target/nersy-jar-with-dependencies.jar Nersy <SRC> --rm  /user/<NET_ID>/project/input/ /user/<NET_ID>/project/output/
 ```
 
 Check the results
 ``` bash
-  hadoop fs -ls /user/xw2788/lab3/output
-  hadoop fs -cat /user/xw2788/lab3/output/part-r-00000
+  hadoop fs -ls /user/xw2788/project/output
+  hadoop fs -cat /user/xw2788/project/output/part-r-00000
 ```
 
 ## How to set up a local developing environment (No installation of Hadoop needed)
