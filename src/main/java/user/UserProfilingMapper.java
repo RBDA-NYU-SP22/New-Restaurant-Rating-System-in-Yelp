@@ -12,6 +12,7 @@ public class UserProfilingMapper
 
     private static final int MISSING = 0;
     private UserProfilingTuple outTuple = new UserProfilingTuple();
+    private UserProfilingTuple userIdTuple = new UserProfilingTuple();
 
     @Override
     public void map(LongWritable key, Text value, Context context)
@@ -57,8 +58,12 @@ public class UserProfilingMapper
                             outTuple.setMin(friends.length);
                         }
                         break;
-                    // String cases
                     case "user_id":
+                        userIdTuple.setUserId(true);
+                        userIdTuple.setCount(1);
+                        context.write(new Text(user.getUser_id()), userIdTuple);
+                        break;
+                    // String cases
                     case "name":
                     case "yelping_since":
                     case "elite":
