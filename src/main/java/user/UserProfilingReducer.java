@@ -18,6 +18,7 @@ public class UserProfilingReducer
         int sum = 0;
         try{
             for (UserProfilingTuple value : values) {
+                result.setUserId(value.isUserId());
                 // Divided by types
                 switch (key.toString()){
                     // number cases
@@ -56,7 +57,10 @@ public class UserProfilingReducer
                 sum += value.getCount();
             }
             result.setCount(sum);
-            context.write(key, result);
+            // Write result if it is not a user_id Or if its count is not 1
+            if (!result.isUserId() || result.getCount() != 1){
+                context.write(key, result);
+            }
         } catch (Exception e){
             e.printStackTrace();
         }
