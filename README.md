@@ -4,7 +4,8 @@
 We use [picocli](https://picocli.info/) to manage commands arguments.
 The inputs should be like this
 ``` bash
-Usage: Nersy [--rm] SRC INPUT OUTPUT
+Usage: Nersy [--rm] STEP SRC INPUT OUTPUT
+      STEP     Specify the step of the data manipulation process
       SRC      data source to process
       INPUT    Input directory
       OUTPUT   Output directory
@@ -48,6 +49,7 @@ Prepare the input files
   hadoop fs -mkdir /user/<NET_ID>/project
   hadoop fs -mkdir /user/<NET_ID>/project/input
   hadoop fs -put <inputfile> /user/<NET_ID>/project/input
+  
 ```
 
 Remove the output directory in HDFS
@@ -59,7 +61,7 @@ hadoop fs -rm -r /user/<NET_ID>/project/output
 Run with Hadoop
 
 ```
-hadoop jar target/nersy-jar-with-dependencies.jar Nersy <SRC> --rm  /user/<NET_ID>/project/input/ /user/<NET_ID>/project/output/
+hadoop jar target/nersy-jar-with-dependencies.jar Nersy <STEP> <SRC> /user/<NET_ID>/project/input/ /user/<NET_ID>/project/output/
 ```
 
 Check the results
