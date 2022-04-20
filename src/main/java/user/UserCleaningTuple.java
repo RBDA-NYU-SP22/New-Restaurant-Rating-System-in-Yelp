@@ -80,7 +80,7 @@ public class UserCleaningTuple implements Writable {
         this.useful = user.getUseful();
         this.funny = user.getFunny();
         this.cool = user.getCool();
-        this.friends = user.getFriends();
+        this.friends = user.getFriends().equals("None") ? "" : user.getFriends();
         this.fans = user.getFans();
         this.average_stars = user.getAverage_stars();
         this.compliment_hot = user.getCompliment_hot();
