@@ -13,11 +13,13 @@ import java.io.File;
 public class Nersy implements Callable<Integer>{
     @Option(names = "--rm", description = "Remove the output file if it exists")
     boolean remove;
-    @Parameters(index="0", paramLabel = "SRC", description = "data source to process")
+    @Parameters(index = "0", paramLabel = "STEP", description = "Specify the step of the data manipulation process")
+    String step;
+    @Parameters(index="1", paramLabel = "SRC", description = "data source to process")
     String src;
-    @Parameters(index="1", paramLabel = "INPUT", description = "Input directory")
+    @Parameters(index="2", paramLabel = "INPUT", description = "Input directory")
     String input;
-    @Parameters(index="2", paramLabel = "OUTPUT", description = "Output directory")
+    @Parameters(index="3", paramLabel = "OUTPUT", description = "Output directory")
     String output;
 
     @Override
@@ -30,7 +32,10 @@ public class Nersy implements Callable<Integer>{
             // TODO: Add new data source to process from here
             case "user":{
                 UserDriver user = new UserDriver();
-                user.run(new String[]{input, output});
+                switch (step.toLowerCase()){
+                    case "profiling":
+                        user.runProfiling(new String[]{input, output});
+                }
                 break;
             }
             default:{

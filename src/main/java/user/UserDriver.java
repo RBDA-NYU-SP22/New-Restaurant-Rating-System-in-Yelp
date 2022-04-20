@@ -7,8 +7,8 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class UserDriver {
-    public static void run(String[] args) throws Exception {
-        System.out.println("running user");
+    public static void runProfiling(String[] args) throws Exception {
+        System.out.println("Profiling user data...");
         Job job = Job.getInstance();
         job.setJarByClass(User.class);
         job.setJobName("User Data Profiling");
