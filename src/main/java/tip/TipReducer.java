@@ -32,7 +32,7 @@ public class TipReducer
                 sum += value.getCount();
             }
             outputres.setCount(sum);
-            context.write(key, outputrest);
+            context.write(key, outputres);
         } catch (Exception e){
             e.printStackTrace();
         }

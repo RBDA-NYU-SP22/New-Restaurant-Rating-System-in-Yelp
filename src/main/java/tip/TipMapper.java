@@ -22,8 +22,8 @@ public class TipMapper extends Mapper<LongWritable, Text, Text, TipSet> {
 
                 switch (mpentry.getKey()) {
                     case "compliment_count":
-                        outputres.setMax(Integer.parseInt(me.getValue().toString()));
-                        outputres.setMin(Integer.parseInt(me.getValue().toString()));
+                        outputres.setMax(Integer.parseInt(mpentry.getValue().toString()));
+                        outputres.setMin(Integer.parseInt(mpentry.getValue().toString()));
                         break;
                     case "user_id":
                     case "business_id":
