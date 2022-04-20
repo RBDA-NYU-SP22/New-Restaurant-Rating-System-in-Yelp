@@ -34,7 +34,11 @@ public class Nersy implements Callable<Integer>{
                 UserDriver user = new UserDriver();
                 switch (step.toLowerCase()){
                     case "profiling":
+                    case "profile":
                         user.runProfiling(new String[]{input, output});
+                    case "cleaning":
+                    case "clean":
+                        user.runCleaning(new String[]{input, output});
                 }
                 break;
             }
