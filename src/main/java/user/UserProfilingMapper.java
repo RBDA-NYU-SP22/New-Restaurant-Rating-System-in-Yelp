@@ -47,12 +47,21 @@ public class UserProfilingMapper
                         outTuple.setMax(Double.parseDouble(me.getValue().toString()));
                         outTuple.setMin(Double.parseDouble(me.getValue().toString()));
                         break;
+                    case "friends":
+                        if (me.getValue().toString().equals("None")){
+                            outTuple.setMax(0);
+                            outTuple.setMin(0);
+                        }else {
+                            String[] friends = me.getValue().toString().split(", ");
+                            outTuple.setMax(friends.length);
+                            outTuple.setMin(friends.length);
+                        }
+                        break;
                     // String cases
                     case "user_id":
                     case "name":
                     case "yelping_since":
                     case "elite":
-                    case "friends":
                     default:
                         break;
 
