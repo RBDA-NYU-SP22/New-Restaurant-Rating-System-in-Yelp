@@ -38,6 +38,7 @@ public class UserProfilingReducer
                     case "compliment_writer":
                     case "compliment_photos":
                     case "average_stars":
+                    case "friends":
                         result.setMax(Math.max(result.getMax(), value.getMax()));
                         result.setMin(Math.min(result.getMin(), value.getMin()));
                         break;
@@ -46,7 +47,6 @@ public class UserProfilingReducer
                     case "name":
                     case "yelping_since":
                     case "elite":
-                    case "friends":
                     default:
                         result.setMax(0);
                         result.setMin(0);
