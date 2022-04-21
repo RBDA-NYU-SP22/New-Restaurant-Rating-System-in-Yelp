@@ -12,6 +12,7 @@ public class UserProfilingMapper
 
     private static final int MISSING = 0;
     private UserProfilingTuple outTuple = new UserProfilingTuple();
+    private UserProfilingTuple userIdTuple = new UserProfilingTuple();
 
     @Override
     public void map(LongWritable key, Text value, Context context)
@@ -47,12 +48,25 @@ public class UserProfilingMapper
                         outTuple.setMax(Double.parseDouble(me.getValue().toString()));
                         outTuple.setMin(Double.parseDouble(me.getValue().toString()));
                         break;
-                    // String cases
+                    case "friends":
+                        if (me.getValue().toString().equals("None")){
+                            outTuple.setMax(0);
+                            outTuple.setMin(0);
+                        }else {
+                            String[] friends = me.getValue().toString().split(", ");
+                            outTuple.setMax(friends.length);
+                            outTuple.setMin(friends.length);
+                        }
+                        break;
                     case "user_id":
+                        userIdTuple.setUserId(true);
+                        userIdTuple.setCount(1);
+                        context.write(new Text(user.getUser_id()), userIdTuple);
+                        break;
+                    // String cases
                     case "name":
                     case "yelping_since":
                     case "elite":
-                    case "friends":
                     default:
                         break;
 

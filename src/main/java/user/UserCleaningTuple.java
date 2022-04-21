@@ -80,7 +80,7 @@ public class UserCleaningTuple implements Writable {
         this.useful = user.getUseful();
         this.funny = user.getFunny();
         this.cool = user.getCool();
-        this.friends = user.getFriends();
+        this.friends = user.getFriends().equals("None") ? "" : user.getFriends();
         this.fans = user.getFans();
         this.average_stars = user.getAverage_stars();
         this.compliment_hot = user.getCompliment_hot();
@@ -97,7 +97,7 @@ public class UserCleaningTuple implements Writable {
     }
     @Override
     public String toString(){
-        return String.format("%s %s %s %s %s %s %s %s %s %s %s %s ",
+        return String.format("%s %s %s %s %s \"%s\" %s %s %s %s %s %s %s %s %s %s %s %s",
                 user_id,
                 review_count,
                 useful,

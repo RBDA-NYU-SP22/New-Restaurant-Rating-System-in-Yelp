@@ -20,6 +20,7 @@ public class UserDriver {
         job.setMapperClass(UserProfilingMapper.class);
         job.setCombinerClass(UserProfilingReducer.class);
         job.setReducerClass(UserProfilingReducer.class);
+        job.setNumReduceTasks(1);
 
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(UserProfilingTuple.class);

@@ -10,6 +10,7 @@ public class UserProfilingTuple implements Writable {
     private double max;
     private double min;
     private long count;
+    private boolean isUserId=false;
 
     public long getCount() {
         return count;
@@ -40,21 +41,30 @@ public class UserProfilingTuple implements Writable {
         this.min = min;
     }
 
+    public boolean isUserId() {
+        return isUserId;
+    }
+    public void setUserId(boolean userId) {
+        isUserId = userId;
+    }
+
     @Override
     public void write(DataOutput dataOutput) throws IOException{
+        dataOutput.writeBoolean(isUserId);
         dataOutput.writeDouble(max);
         dataOutput.writeDouble(min);
         dataOutput.writeLong(count);
     }
     @Override
     public void readFields(DataInput dataInput) throws IOException{
+        isUserId = dataInput.readBoolean();
         max = dataInput.readDouble();
         min = dataInput.readDouble();
         count = dataInput.readLong();
     }
     @Override
     public String toString(){
-        return String.format("%10s %10s %10s", max, min, count);
+        return isUserId ? String.format("%d", count) : String.format("%10s %10s %10s", max, min, count);
     }
 
 }
