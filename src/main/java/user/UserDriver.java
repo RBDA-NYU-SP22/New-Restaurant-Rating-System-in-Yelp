@@ -37,7 +37,6 @@ public class UserDriver {
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
         job.setMapperClass(UserCleaningMapper.class);
-        job.setNumReduceTasks(1);
 
         job.setOutputKeyClass(NullWritable.class);
         job.setOutputValueClass(UserProfilingTuple.class);
