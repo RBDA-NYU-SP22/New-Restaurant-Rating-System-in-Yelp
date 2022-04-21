@@ -97,7 +97,7 @@ public class UserCleaningTuple implements Writable {
     }
     @Override
     public String toString(){
-        return String.format("%s %s %s %s %s %s %s %s %s %s %s %s ",
+        return String.format("%s %s %s %s %s \"%s\" %s %s %s %s %s %s %s %s %s %s %s %s",
                 user_id,
                 review_count,
                 useful,
