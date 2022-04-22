@@ -1,4 +1,11 @@
 # User Data
+## Data Source
+
+We are using User data from [Yelp Dataset | Kaggle](https://www.kaggle.com/datasets/yelp-dataset/yelp-dataset/metadata?select=yelp_academic_dataset_user.json)
+
+The source user data is a JSON file including user_id, name, review_count, yelping_since, useful, funny, cool, elite, friends, fans, average_stars , compliment_hot, compliment_more, compliment_profile, compliment_cute, compliment_list, compliment_note, compliment_plain, compliment_cool, compliment_funny, compliment_writer, and compliment_photos. 22 fields in total.
+
+
 ## Demo/Template
 
 `src/main/java/user` includes all operations on user data.
