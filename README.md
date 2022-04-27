@@ -75,6 +75,51 @@ Check the results
 * For Windows users, a winutil is needed. Be sure to download a compatible version [here](https://github.com/steveloughran/winutils) and add it to the environment of PC.
 * Restart the IDEA or maybe the computer after setting up the environment
 
+
+
+## Tableau and Hive ODBC Driver
+
+We use [Tableau for Students](https://www.tableau.com/academic/students) to analyze the data and use [Hive ODBC Driver 2.6.11 (cloudera.com)](https://www.cloudera.com/downloads/connectors/hive/odbc/2-6-11.html) to connect the HPC. The following steps are copied from professor Tang's slides lecture 8. Connect to the HPC with the VPN on.
+
+**Step 1:** Download and install Tableau Desktop using the free student license.
+
+https://www.tableau.com/academic/students
+
+**Step 2:** Download and install the the Cloudera Hive ODBC Driver.
+
+https://www.cloudera.com/downloads/connectors/hive/odbc/
+
+**Step 3:** Launch Tableau Desktop.
+
+**Step 4:** Select Cloudera Hadoop on the left sidebar.
+
+**Step 5:** Fill out the server information as shown in the following screenshot.
+
+> Server: hm-1.hpc.nyu.edu
+>
+> Authentication: Username and Password
+>
+> Username: Your_NetID
+>
+> Password: \*\*\*\*\*\*\*\*
+>
+> Transport: SASL
+
+**Step 6:** Click Schema on the left sidebar.
+
+**Step 7:** Enter your NetID.
+
+**Step 8:** Enter your table name on the left sidebar.
+
+**Step 9:** Drag the table into the large area at the right. You should see the data 
+pulled from HDFS and appear in Tableau.
+
+**Step 10:** Click Sheet 1 at the bottom.
+
+**Step 11:** From there, watch the Tableau demos to learn how to use it.
+
+https://www.tableau.com/learn/get-started/creator
+
 ## Reference
 
 [Hadoop: Intellij结合Maven本地运行和调试MapReduce程序 (无需搭载Hadoop和HDFS环境) - Penguin (polarxiong.com)](https://www.polarxiong.com/archives/Hadoop-Intellij结合Maven本地运行和调试MapReduce程序-无需搭载Hadoop和HDFS环境.html)
