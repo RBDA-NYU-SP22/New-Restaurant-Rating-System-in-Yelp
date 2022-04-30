@@ -42,5 +42,21 @@ public class UserDriver {
         job.setOutputValueClass(UserProfilingTuple.class);
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
+
+    public static void runProcessing(String[] args) throws Exception {
+        System.out.println("Processing user data...");
+        Job job = Job.getInstance();
+        job.setJarByClass(User.class);
+        job.setJobName("User Data Processing");
+        job.setNumReduceTasks(0);
+        FileInputFormat.addInputPath(job, new Path(args[0]));
+        FileOutputFormat.setOutputPath(job, new Path(args[1]));
+
+        job.setMapperClass(UserProcessMapper.class);
+
+        job.setOutputKeyClass(NullWritable.class);
+        job.setOutputValueClass(UserProcessTuple.class);
+        System.exit(job.waitForCompletion(true) ? 0 : 1);
+    }
 }
 
