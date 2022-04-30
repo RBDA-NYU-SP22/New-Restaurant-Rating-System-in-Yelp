@@ -28,7 +28,7 @@ public class UserProcessMapper
             long T = cur - time;
             double G = 1.5;
 
-            double rate = (V - 1) / N  / Math.pow(T + 1, G);
+            double rate = (V - 1) / N  / Math.pow(T + 1, G) * Math.log10(user.getFriendsNumber());
 
             outTuple.setRate(rate);
             context.write(NullWritable.get(), outTuple);
