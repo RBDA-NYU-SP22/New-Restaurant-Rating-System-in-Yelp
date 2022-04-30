@@ -26,7 +26,7 @@ public class UserProcessMapper
             long cur = new Date().getTime();
             long time = (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).parse(user.getYelping_since(), new ParsePosition(0)).getTime();
             long T = cur - time;
-            double G = 1.5;
+            double G = 1.3;
 
             double rate = Math.log10(V / (N+1) * (Math.pow(T + 1, G)+1) * Math.log10(user.getFriendsNumber())+1)+1;
 
