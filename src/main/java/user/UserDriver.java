@@ -56,7 +56,25 @@ public class UserDriver {
 
         job.setOutputKeyClass(NullWritable.class);
         job.setOutputValueClass(UserProcessTuple.class);
-        System.exit(job.waitForCompletion(true) ? 0 : 1);
+        job.waitForCompletion(true);
+
+        // A simple profiling of the result data
+        System.out.println("Profiling result data...");
+        Job profileJob = Job.getInstance();
+        profileJob.setJarByClass(User.class);
+        profileJob.setJobName("Result data profiling");
+        profileJob.setNumReduceTasks(0);
+        FileInputFormat.addInputPath(profileJob, new Path(args[1]));
+        FileOutputFormat.setOutputPath(profileJob, new Path(args[1] + "profile"));
+
+        profileJob.setMapperClass(UserProcessProfilingMapper.class);
+        profileJob.setCombinerClass(UserProcessProfilingReducer.class);
+        profileJob.setReducerClass(UserProcessProfilingReducer.class);
+        profileJob.setNumReduceTasks(1);
+
+        profileJob.setOutputKeyClass(Text.class);
+        profileJob.setOutputValueClass(UserProfilingTuple.class);
+        System.exit(profileJob.waitForCompletion(true) ? 0 : 1);
     }
 }
 

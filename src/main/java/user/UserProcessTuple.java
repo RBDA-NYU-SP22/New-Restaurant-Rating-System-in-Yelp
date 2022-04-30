@@ -15,6 +15,46 @@ public class UserProcessTuple implements Writable {
     private double average_stars;
     private double rate;
 
+    public int getReview_count() {
+        return review_count;
+    }
+
+    public void setReview_count(int review_count) {
+        this.review_count = review_count;
+    }
+
+    public String getYelping_since() {
+        return yelping_since;
+    }
+
+    public void setYelping_since(String yelping_since) {
+        this.yelping_since = yelping_since;
+    }
+
+    public int getFriends() {
+        return friends;
+    }
+
+    public void setFriends(int friends) {
+        this.friends = friends;
+    }
+
+    public int getFans() {
+        return fans;
+    }
+
+    public void setFans(int fans) {
+        this.fans = fans;
+    }
+
+    public double getAverage_stars() {
+        return average_stars;
+    }
+
+    public void setAverage_stars(double average_stars) {
+        this.average_stars = average_stars;
+    }
+
     public double getRate() {
         return rate;
     }
