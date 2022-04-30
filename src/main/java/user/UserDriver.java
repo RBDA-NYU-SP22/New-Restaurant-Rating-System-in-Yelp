@@ -50,7 +50,7 @@ public class UserDriver {
         job.setJobName("User Data Processing");
         job.setNumReduceTasks(0);
         FileInputFormat.addInputPath(job, new Path(args[0]));
-        FileOutputFormat.setOutputPath(job, new Path(args[1]));
+        FileOutputFormat.setOutputPath(job, new Path(args[1]+ "result"));
 
         job.setMapperClass(UserProcessMapper.class);
 
@@ -64,7 +64,7 @@ public class UserDriver {
         profileJob.setJarByClass(User.class);
         profileJob.setJobName("Result data profiling");
         profileJob.setNumReduceTasks(0);
-        FileInputFormat.addInputPath(profileJob, new Path(args[1]));
+        FileInputFormat.addInputPath(profileJob, new Path(args[1] + "result"));
         FileOutputFormat.setOutputPath(profileJob, new Path(args[1] + "profile"));
 
         profileJob.setMapperClass(UserProcessProfilingMapper.class);
