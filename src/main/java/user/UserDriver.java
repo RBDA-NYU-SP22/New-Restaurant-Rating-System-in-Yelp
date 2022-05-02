@@ -42,5 +42,39 @@ public class UserDriver {
         job.setOutputValueClass(UserProfilingTuple.class);
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
+
+    public static void runProcessing(String[] args) throws Exception {
+        System.out.println("Processing user data...");
+        Job job = Job.getInstance();
+        job.setJarByClass(User.class);
+        job.setJobName("User Data Processing");
+        job.setNumReduceTasks(0);
+        FileInputFormat.addInputPath(job, new Path(args[0]));
+        FileOutputFormat.setOutputPath(job, new Path(args[1]+ "result"));
+
+        job.setMapperClass(UserProcessMapper.class);
+
+        job.setOutputKeyClass(NullWritable.class);
+        job.setOutputValueClass(UserProcessTuple.class);
+        job.waitForCompletion(true);
+
+        // A simple profiling of the result data
+        System.out.println("Profiling result data...");
+        Job profileJob = Job.getInstance();
+        profileJob.setJarByClass(User.class);
+        profileJob.setJobName("Result data profiling");
+        profileJob.setNumReduceTasks(0);
+        FileInputFormat.addInputPath(profileJob, new Path(args[1] + "result"));
+        FileOutputFormat.setOutputPath(profileJob, new Path(args[1] + "profile"));
+
+        profileJob.setMapperClass(UserProcessProfilingMapper.class);
+        profileJob.setCombinerClass(UserProcessProfilingReducer.class);
+        profileJob.setReducerClass(UserProcessProfilingReducer.class);
+        profileJob.setNumReduceTasks(1);
+
+        profileJob.setOutputKeyClass(Text.class);
+        profileJob.setOutputValueClass(UserProfilingTuple.class);
+        System.exit(profileJob.waitForCompletion(true) ? 0 : 1);
+    }
 }
 

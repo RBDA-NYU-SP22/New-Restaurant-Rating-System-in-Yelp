@@ -41,6 +41,9 @@ public class Nersy implements Callable<Integer>{
                     case "cleaning":
                     case "clean":
                         user.runCleaning(new String[]{input, output});
+                    case "processing":
+                    case "process":
+                        user.runProcessing(new String[]{input, output});
                 }
                 break;
             }

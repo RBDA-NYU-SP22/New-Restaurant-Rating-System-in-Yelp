@@ -229,4 +229,9 @@ public class User {
         }
         return r;
     }
+
+    public int getFriendsNumber(){
+        return friends.split(", ").length;
+    }
+
 }
