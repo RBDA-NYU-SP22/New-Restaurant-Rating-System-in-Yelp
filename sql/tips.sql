@@ -1,0 +1,1 @@
+create external table tip (date_time string, user_id string, text_length string, business_id string) row format delimited fields terminated by ',' location '/user/xw2788/project/data/tips_data/';
