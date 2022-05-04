@@ -1,3 +1,5 @@
+import TipHandling.TipCleanning.TipCleaningDriver;
+import TipHandling.TipProfiling.TipProfilingDriver;
 import user.User;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
@@ -42,6 +44,17 @@ public class Nersy implements Callable<Integer>{
                     case "processing":
                     case "process":
                         user.runProcessing(new String[]{input, output});
+                }
+                break;
+            }
+            case "tip":{
+                switch (step.toLowerCase()){
+                    case "profiling":
+                    case "profile":
+                        TipProfilingDriver.main(new String[]{input, output});
+                    case "cleaning":
+                    case "clean":
+                        TipCleaningDriver.main(new String[]{input, output});
                 }
                 break;
             }
