@@ -1,3 +1,5 @@
+package TipHandling.TipProfiling;
+
 import org.apache.hadoop.io.Writable;
 
 import java.io.DataInput;

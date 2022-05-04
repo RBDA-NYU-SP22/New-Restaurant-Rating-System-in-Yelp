@@ -1,3 +1,5 @@
+package TipHandling.TipCleanning;
+
 import com.google.gson.Gson;
 
 import java.lang.reflect.Field;

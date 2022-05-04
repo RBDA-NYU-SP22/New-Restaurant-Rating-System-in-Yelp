@@ -1,3 +1,6 @@
+package TipHandling.TipCleanning;
+
+import TipHandling.TipProfiling.Tip;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
@@ -5,7 +8,7 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-public class TipDriver {
+public class TipCleaningDriver {
     public static void main(String[] args) throws Exception {
         System.out.println("Clean:");
         Job job = Job.getInstance();

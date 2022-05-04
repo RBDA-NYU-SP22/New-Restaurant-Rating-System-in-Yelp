@@ -1,3 +1,5 @@
+package TipHandling.TipProfiling;
+
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
@@ -5,7 +7,7 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-public class TipDriver {
+public class TipProfilingDriver {
     public static void main(String[] args) throws Exception {
         System.out.println("Profile:");
         Job job = Job.getInstance();
