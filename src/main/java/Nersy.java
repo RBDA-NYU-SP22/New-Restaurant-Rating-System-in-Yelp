@@ -1,3 +1,4 @@
+import Review.Review;
 import TipHandling.TipCleanning.TipCleaningDriver;
 import TipHandling.TipProfiling.TipProfilingDriver;
 import user.User;
@@ -55,6 +56,17 @@ public class Nersy implements Callable<Integer>{
                     case "cleaning":
                     case "clean":
                         TipCleaningDriver.main(new String[]{input, output});
+                }
+                break;
+            }
+            case "review":{
+                switch (step.toLowerCase()){
+                    case "profiling":
+                    case "profile":
+                        Review.main(new String[]{input, output});
+                    case "cleaning":
+                    case "clean":
+                        Review.main(new String[]{input, output});
                 }
                 break;
             }
