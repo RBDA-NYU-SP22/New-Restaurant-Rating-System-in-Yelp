@@ -1,4 +1,13 @@
 # New-Restaurant-Rating-System-in-Yelp
+## Introduction
+In our project, we developed a new rating system that takes users quality into account. We believe that an active user with more agreements from other users tends to give a high quality reviews and we should consider more on those kinds of reviews given by a high-quality. To give an improved rating on restaurants on Yelp, we came up with several algorithms on rating users and reviews to re-rating the restaurants. The algorithms are implemented based on the Yelp's data on reviews, users, tips, and businesses. For more about the project, you can refer to our [Final Report](https://github.com/RBDA-NYU-SP22/RBDA-final-report)
+
+(The source codes on businesses is at [RBDA-NYU-SP22/Business-Analysis](https://github.com/RBDA-NYU-SP22/Business-Analysis))
+
+## Algorithm
+![lagrida_latex_editor](https://user-images.githubusercontent.com/39271899/167480277-0a6eb1dc-a4b8-453e-9b1b-30922d2ac732.png)
+
+The above is the algorithm we designed on re-rating user and it is implemented at [UserProcessMapper](./src/main/java/user/UserProcessMapper.java)
 
 ## How to run
 We use [picocli](https://picocli.info/) to manage commands arguments.
